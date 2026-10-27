@@ -1,0 +1,10 @@
+MikeGC Legal Workflows
+Copyright 2026 MikeGC contributors
+
+This product is licensed under the Apache License, Version 2.0. See LICENSE.
+
+The schemas and validation tooling in workflow-schema/ are adapted from
+Mike Legal Workflows (https://github.com/Open-Legal-Products/mike-workflows,
+revision 20bed204ce9ef07e1bc2df0b16b35ee8ad997fb1), Copyright (c) 2026 Mike,
+licensed under the MIT License. See third-party-licenses/mike-workflows-MIT.txt.
+The schema titles and descriptions were modified to refer to MikeGC.
