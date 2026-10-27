@@ -21,6 +21,9 @@ For copied or adapted material, including workflows from
 - Preserve or add modification notices where required by the upstream license.
 - Record the source URL, repository, revision, upstream path, author, and
   license in the workflow metadata or pack manifest.
+  For a workflow, use the `source-repository`, `source-revision`,
+  `source-path`, and `source-url` metadata fields alongside `author` and the
+  top-level `license`.
 - Keep the upstream license in the workflow's `license` field. Do not relabel
   third-party material as Apache-2.0 unless the copyright holder has granted
   that right.

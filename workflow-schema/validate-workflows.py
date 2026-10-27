@@ -20,6 +20,15 @@ PACK_KEYS = {
     "$schema", "id", "title", "description", "publisher", "license", "version",
     "practice", "jurisdiction", "source", "workflows", "required_connectors",
 }
+# MikeGC refuses to import a catalog that is missing any of these defaults
+# (DEFAULT_WORKFLOWS in mikegc's backend/src/lib/workflowCatalogSource.ts).
+REQUIRED_SYSTEM_WORKFLOWS = {
+    "assistant-workflows/proofread",
+    "assistant-workflows/compare-documents",
+    "assistant-workflows/extract-key-terms",
+    "assistant-workflows/draft-from-template",
+    "tabular-review-workflows/commercial-agreement-tabular-review",
+}
 NAME_PATTERN = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 SEMVER_PATTERN = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+(?:-[0-9A-Za-z.-]+)?$")
 PROHIBITED_SKILL_PATTERNS = {
@@ -68,6 +77,10 @@ skill_files = unique_sorted(
 )
 
 frontmatter_pattern = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
+
+for required in sorted(REQUIRED_SYSTEM_WORKFLOWS):
+    if not (ROOT / required / "SKILL.md").is_file():
+        errors.append(f"{required}: required by MikeGC and must not be removed")
 
 for file in skill_files:
     text = file.read_text()
@@ -126,6 +139,12 @@ for file in skill_files:
     expected_type = "assistant" if "assistant-workflows" in file.parts else "tabular"
     if metadata.get("mike-type") != expected_type:
         errors.append(f"{file}: mike-type must be {expected_type}")
+
+    if (
+        file.parent.relative_to(ROOT).as_posix() in REQUIRED_SYSTEM_WORKFLOWS
+        and metadata.get("mike-availability") != "system"
+    ):
+        errors.append(f"{file}: workflows required by MikeGC must use mike-availability system")
 
     if file.parent.parent.name.endswith("-pack") and metadata.get("mike-availability") != "add-on":
         errors.append(f"{file}: workflows inside packs must use mike-availability add-on")

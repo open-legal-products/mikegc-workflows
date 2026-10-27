@@ -11,9 +11,7 @@ This repository follows the structure and conventions of
 so MikeGC can read workflows from either repository. It focuses on workflows
 for in-house legal teams.
 
-> [!NOTE]
-> The repository does not contain any workflows yet. MikeGC still imports its
-> system workflows from `mike-workflows` by default.
+MikeGC imports its workflow catalog from this repository by default.
 
 The repository has two top-level workflow collections:
 
@@ -96,6 +94,21 @@ what a workflow does, not how it is distributed.
 
 MikeGC inherits Mike's workflow importer, so metadata fields keep the `mike-`
 prefix used by `mike-workflows`.
+
+## Required System Workflows
+
+MikeGC refuses to import a catalog that is missing any of these system
+workflows, which back its built-in quick actions:
+
+- `assistant-workflows/proofread/`
+- `assistant-workflows/compare-documents/`
+- `assistant-workflows/extract-key-terms/`
+- `assistant-workflows/draft-from-template/`
+- `tabular-review-workflows/commercial-agreement-tabular-review/`
+
+They are copied from `mike-workflows` under the MIT License, and each records
+its source in `metadata` (see [PROVENANCE.md](PROVENANCE.md)). Validation fails
+if one is removed or is no longer a system workflow.
 
 ## Workflow Types
 
@@ -301,6 +314,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for authoring and validation rules,
 
 Apache License 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
-The schemas and validation tooling in `workflow-schema/` are adapted from
-`mike-workflows` under the MIT License; see
+The schemas and validation tooling in `workflow-schema/`, and workflows whose
+`license` is `MIT`, come from `mike-workflows` under the MIT License; see
 [`third-party-licenses/mike-workflows-MIT.txt`](third-party-licenses/mike-workflows-MIT.txt).
