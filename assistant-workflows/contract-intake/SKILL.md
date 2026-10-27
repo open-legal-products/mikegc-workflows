@@ -40,6 +40,10 @@ If a fact essential to routing, such as which party we are or the approximate
 value, cannot be found, ask for it once in a single short list. Otherwise
 proceed and record the fact as "Not stated".
 
+If the request and the contract give different values for the same fact,
+record both with their sources, list the conflict under Missing Information,
+and route on the more conservative value until the requester resolves it.
+
 Flag risk indicators, including where present: uncapped or unusually high
 liability, broad indemnities, personal data processing or cross-border
 transfers, assignment or licensing of our intellectual property, exclusivity,
@@ -48,13 +52,17 @@ notice period, large or multi-year commitments, unusual governing law or
 forum, government or regulated counterparties, and missing documents such as a
 DPA where personal data will be shared.
 
-Assign a risk tier:
+Without a policy, assign a default risk tier based on the risk indicators:
 
-- **Low** — standard template or low value, with no risk indicators.
-- **Medium** — counterparty paper or moderate value, with risk indicators that
-  standard positions can address.
-- **High** — material value or commitment, or any indicator that needs
-  specialist input or senior approval.
+- **Low** — our template or a standard form, with no risk indicators.
+- **Medium** — counterparty paper, or risk indicators that standard positions
+  can address.
+- **High** — any risk indicator that needs specialist input or senior
+  approval, or a value or commitment above the senior-approval threshold.
+
+Take value thresholds only from a policy the user provides. If there is none,
+tier on the risk indicators alone and say that no value threshold was applied.
+Where a matter fits more than one tier, assign the highest.
 
 Recommend a route: business self-service with an approved template, standard
 legal review, or senior counsel review. Name any specialist reviewers needed,
@@ -67,11 +75,14 @@ such as privacy, security, intellectual property, tax, or finance.
    for facts taken from the request, or "Not stated".
 2. **Risk Indicators** — a Markdown table with the columns Indicator,
    Location, and Why It Matters. State "None identified" if there are none.
-3. **Missing Information** — a short list of missing facts or documents and
-   who should provide each one.
-4. **Recommendation** — the risk tier, review route, specialist reviewers,
-   suggested priority given any deadline, and the next step, such as a
-   contract markup.
+3. **Missing Information** — a short list of missing facts or documents,
+   and conflicts between the request and the contract, with who should
+   resolve each one.
+4. **Recommendation** — the risk tier and the basis for it, the review route,
+   specialist reviewers, suggested priority given any deadline, and the next
+   step, such as a contract markup. Where a user-provided policy applies,
+   report the policy's own classification or approval outcome, and give the
+   default tier as "Not applicable" unless the policy uses the same tiers.
 
 This is triage, not a full review. Do not reach legal conclusions or invent
 facts, parties, amounts, dates, or terms that the materials do not support.
